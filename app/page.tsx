@@ -2,7 +2,7 @@ import { builder } from '@builder.io/react';
 import { BuilderComponent } from '@builder.io/react';
 
 // Initialize Builder
-const apiKey = process.env.NEXT_PUBLIC_BUILDER_API_KEY || process.env.BUILDER_PUBLIC_API_KEY;
+const apiKey = process.env.BUILDER_PUBLIC_API_KEY;
 
 if (!apiKey) {
   throw new Error('Builder.io API key is missing. Please set NEXT_PUBLIC_BUILDER_API_KEY or BUILDER_PUBLIC_API_KEY in your environment variables.');
