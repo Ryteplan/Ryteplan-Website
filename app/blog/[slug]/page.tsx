@@ -36,8 +36,8 @@ export default function BlogPostPage() {
         setNotFound(!content);
 
         // if the page title is found, 
-        // set the document title
-        if (content?.data?.title && typeof document !== 'undefined') {
+        // set the document title (only on client side)
+        if (content?.data?.title) {
           document.title = content.data.title;
         }
       } catch (error) {
