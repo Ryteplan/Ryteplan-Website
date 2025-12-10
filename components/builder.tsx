@@ -3,6 +3,7 @@
 import { ComponentProps } from "react";
 import { builder } from "@builder.io/sdk";
 import { BuilderComponent, useIsPreviewing } from "@builder.io/react";
+import '@builder.io/widgets/dist/lib/builder-widgets-async'
 
 // Replace with your Public API Key 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);

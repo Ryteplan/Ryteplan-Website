@@ -1,6 +1,4 @@
-import React from "react";
 import { builder } from "@builder.io/sdk";
-// See the full code: https://www.builder.io/c/docs/integrate-section-building?codeFramework=nextApp#add-an-announcement-bar-section-to-your-app
 import { RenderBuilderContent } from "../../../components/builder";
 
 // Replace with your Public API Key
@@ -12,18 +10,23 @@ interface PageProps {
 
 export default async function Page(props: PageProps) {
   const params = await props.params;
+  
   const content = await builder
     .get("blog-post", {
-      userAttributes: {
-        urlPath: `/blog/${params.slug}`,
-      },
+      url: `/blog/${params.slug}`,
     })
     .toPromise();
 
+  // Verify the content slug matches what we requested
+  // Builder.io may return fallback content if no exact match exists
+  const isMatch = content?.data?.slug === params.slug;
+
   return (
     <>
-      {/* Render the Builder page */}
-      <RenderBuilderContent content={content} model="blog-post" />
+      <RenderBuilderContent 
+        content={isMatch ? content : null} 
+        model="blog-post" 
+      />
     </>
   );
 }

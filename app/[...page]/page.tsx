@@ -9,13 +9,19 @@ interface PageProps {
 
 export default async function CatchAllPage(props: PageProps) {
   const params = await props.params;
+  const urlPath = "/" + (params?.page?.join("/") || "");
+  
   const content = await builder
     .get("page", {
       userAttributes: {
-        urlPath: "/" + (params?.page?.join("/") || ""),
+        urlPath,
       },
     })
     .toPromise();
 
-  return <RenderBuilderContent content={content} model="page" />;
+  // Verify the content URL matches the requested URL exactly
+  const contentUrl = content?.data?.url;
+  const isExactMatch = contentUrl === urlPath || contentUrl === `${urlPath}/`;
+
+  return <RenderBuilderContent content={isExactMatch ? content : null} model="page" />;
 }
