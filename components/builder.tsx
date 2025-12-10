@@ -19,5 +19,18 @@ export function RenderBuilderContent(props: BuilderPageProps) {
     return <BuilderComponent {...props} />;
   }
 
-  return null;
+  // Show 404 when no content is found
+  return (
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      minHeight: '100vh',
+      fontFamily: 'system-ui, sans-serif',
+    }}>
+      <h1 style={{ fontSize: '4rem', margin: 0, color: '#111' }}>404</h1>
+      <p style={{ fontSize: '1.25rem', color: '#666' }}>Page not found</p>
+    </div>
+  );
 }
