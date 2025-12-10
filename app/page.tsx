@@ -1,17 +1,16 @@
-'use client';
+import { builder } from "@builder.io/sdk";
+import { RenderBuilderContent } from "../components/builder";
 
-import { BuilderComponent, builder } from '@builder.io/react';
-import { usePathname } from 'next/navigation';
-import '../components/registry';
+builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
-builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY || '');
+export default async function HomePage() {
+  const content = await builder
+    .get("page", {
+      userAttributes: {
+        urlPath: "/",
+      },
+    })
+    .toPromise();
 
-export default function CatchAllPage() {
-  const pathname = usePathname();
-  
-  return (
-    <BuilderComponent 
-      model="page"
-    />
-  );
+  return <RenderBuilderContent content={content} model="page" />;
 }
