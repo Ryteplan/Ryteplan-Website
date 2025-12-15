@@ -8,6 +8,18 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
+export async function generateStaticParams() {
+  // Fetch all blog posts from Builder.io
+  const posts = await builder.getAll('blog-post', {
+    fields: 'data.slug',
+    options: { noTargeting: true },
+  });
+
+  return posts.map((post) => ({
+    slug: post.data?.slug || '',
+  }));
+}
+
 export default async function Page(props: PageProps) {
   const params = await props.params;
   
