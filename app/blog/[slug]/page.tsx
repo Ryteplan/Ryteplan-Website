@@ -2,7 +2,7 @@ import { builder } from "@builder.io/sdk";
 import { RenderBuilderContent } from "../../../components/builder";
 
 // Replace with your Public API Key
-builder.init(process.env.BUILDER_PUBLIC_API_KEY!);
+builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
 interface PageProps {
   params: Promise<{ slug: string }>;
