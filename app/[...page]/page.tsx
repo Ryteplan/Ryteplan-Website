@@ -7,17 +7,6 @@ interface PageProps {
   params: Promise<{ page: string[] }>;
 }
 
-export async function generateStaticParams() {
-  // Fetch all pages from Builder.io
-  const pages = await builder.getAll('page', {
-    fields: 'data.url',
-    options: { noTargeting: true },
-  });
-
-  return pages.map((page) => ({
-    page: page.data?.url?.split('/').filter(Boolean) || [],
-  }));
-}
 
 export default async function CatchAllPage(props: PageProps) {
   const params = await props.params;
