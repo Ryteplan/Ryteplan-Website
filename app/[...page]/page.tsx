@@ -7,7 +7,7 @@ interface PageProps {
   params: Promise<{ page: string[] }>;
 }
 
-export const runtime = 'edge';
+export const runtime = 'edge-experimental';
 
 export default async function CatchAllPage(props: PageProps) {
   const params = await props.params;
