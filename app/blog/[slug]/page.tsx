@@ -8,7 +8,7 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-export const runtime = 'edge-experimental';
+export const runtime = 'experimental-edge';
 
 export default async function Page(props: PageProps) {
   const params = await props.params;
