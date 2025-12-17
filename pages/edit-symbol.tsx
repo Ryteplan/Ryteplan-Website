@@ -7,4 +7,4 @@ export default function Page() {
   return <BuilderComponent model="symbol" />
 }
 
-export const runtime = 'edge';
+export const runtime = 'experimental-edge';
