@@ -1,6 +1,6 @@
 'use client';
 
-export const runtime = 'experimental-edge';
+export const runtime = 'edge';
 
 export default function GlobalError({
   error,
