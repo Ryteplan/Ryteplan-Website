@@ -1,12 +1,12 @@
-"use client";
-
+'use client';
 import { BuilderComponent, builder } from '@builder.io/react';
 
 // Replace with your Public API Key.
-builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
+const BUILDER_API_KEY = 'YOUR_API_KEY';
+builder.init(BUILDER_API_KEY);
 
-export default function Page() {
+const EditSymbolPage = () => {
   return <BuilderComponent model="symbol" />
-}
+};
 
-export const runtime = 'edge';
+export default EditSymbolPage;
