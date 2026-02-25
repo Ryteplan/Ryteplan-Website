@@ -1,9 +1,9 @@
 // components/builder.tsx
 "use client";
-import { ComponentProps } from "react";
+import { ComponentProps, useEffect, useState } from "react";
 import { builder } from "@builder.io/sdk";
 import { BuilderComponent, useIsPreviewing } from "@builder.io/react";
-import '@builder.io/widgets/dist/lib/builder-widgets-async'
+import '@builder.io/widgets'
 
 // Replace with your Public API Key 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
@@ -11,13 +11,23 @@ builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 type BuilderPageProps = ComponentProps<typeof BuilderComponent>;
 
 export function RenderBuilderContent(props: BuilderPageProps) {
-  // Call the useIsPreviewing hook to determine if
-  // the page is being previewed in Builder
+  const [mounted, setMounted] = useState(false);
   const isPreviewing = useIsPreviewing();
-  // If "content" has a value or the section is being previewed in Builder,
-  // render the BuilderComponent with the specified content and model props.
-  if (props.content || isPreviewing) {
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Defer BuilderComponent render until after hydration to avoid rich text
+  // dangerouslySetInnerHTML server/client mismatch in Builder.io SDK
+  const shouldRenderContent = props.content || isPreviewing;
+  if (shouldRenderContent && mounted) {
     return <BuilderComponent {...props} />;
+  }
+
+  if (shouldRenderContent && !mounted) {
+    // Placeholder during SSR and initial hydration - must match server/client
+    return <div style={{ minHeight: "100vh" }} />;
   }
 
   // Show 404 when no content is found
