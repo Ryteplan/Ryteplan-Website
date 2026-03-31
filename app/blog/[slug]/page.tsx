@@ -9,7 +9,6 @@ interface PageProps {
 }
 
 export const runtime = 'edge';
-export const dynamic = 'force-dynamic';
 
 export default async function Page(props: PageProps) {
   const params = await props.params;
