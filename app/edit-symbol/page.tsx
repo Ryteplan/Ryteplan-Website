@@ -1,4 +1,4 @@
-'use client';
+import '@builder.io/widgets'
 import { BuilderComponent, builder } from '@builder.io/react';
 
 // Replace with your Public API Key.

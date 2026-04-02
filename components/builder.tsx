@@ -1,9 +1,9 @@
 // components/builder.tsx
 "use client";
+import '@builder.io/widgets'
 import { ComponentProps, useEffect, useState } from "react";
 import { builder } from "@builder.io/sdk";
 import { BuilderComponent, useIsPreviewing } from "@builder.io/react";
-import '@builder.io/widgets'
 
 // Replace with your Public API Key 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
