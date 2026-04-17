@@ -1,12 +1,8 @@
-import '@builder.io/widgets'
-import { BuilderComponent, builder } from '@builder.io/react';
-
-// Replace with your Public API Key.
-const BUILDER_API_KEY = 'YOUR_API_KEY';
-builder.init(BUILDER_API_KEY);
+"use client";
+import { RenderBuilderContent } from "@/components/builder";
 
 const EditSymbolPage = () => {
-  return <BuilderComponent model="symbol" />
+  return <RenderBuilderContent model="symbol" content={undefined} />;
 };
 
 export default EditSymbolPage;
